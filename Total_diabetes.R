@@ -35,7 +35,7 @@ models = c("C5.0","rpart", "J48")
 for (i in models)
 {
   cntrl=trainControl(method = "cv",number=5)
-  model_C50_car=train(diabetes~ pregnancies + plasma.glucose + age,data=trainset,method = "C5.0" ,trControl=cntrl,metric="Kappa")
+  model_C50_car=train(diabetes~ pregnancies + plasma.glucose + age,data=trainset,method = i ,trControl=cntrl,metric="Kappa")
   #model_C50_car=train(diabetes~ plasma.glucose + age + bmi + blood.pressure + diabetes.pedigree,data=trainset,method = i ,trControl=cntrl,metric="Kappa")
   pred_C50_car=predict(model_C50_car,newdata = testset)
   con = confusionMatrix(pred_C50_car,testset$diabetes)
